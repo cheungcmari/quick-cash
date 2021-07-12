@@ -1,0 +1,42 @@
+Index: app/src/test/java/com/team5/quickcashteam5/JobTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.team5.quickcashteam5;\r\n\r\nimport org.junit.Before;\r\nimport org.junit.Test;\r\n\r\nimport java.text.ParseException;\r\nimport java.util.ArrayList;\r\nimport java.util.Date;\r\n\r\nimport static org.junit.Assert.assertTrue;\r\n\r\npublic class JobTest {\r\n    /**\r\n     * COMMON VARIABLES FOR TESTING\r\n     */\r\n    private String Title = \"Title Text\";\r\n    private String Location = \"Halifax, NS\";\r\n    private int Duration = 60;\r\n    private double PaymentAmount = 50.75;\r\n    private Date Deadline = new Date();\r\n    private String Description = \"This is a description\";\r\n    private ArrayList<String> Equipment = new ArrayList<String>();\r\n    private ArrayList<String> Pictures = new ArrayList<String>();\r\n    private String newEquipment = \"Camera\";\r\n    private String newPicture = \"Earth.jpg\";\r\n    private String userID = \"FHoekstra\";\r\n    private String workerID = \"HKagura\";\r\n    private Job job;\r\n\r\n    @Before\r\n    public void InitializeCommon() {\r\n        job = new Job(userID);\r\n\r\n        Equipment.add(\"Shovel\");\r\n        Equipment.add(\"Gloves\");\r\n        Equipment.add(\"Bottled Water\");\r\n\r\n        Pictures.add(\"House1.png\");\r\n        Pictures.add(\"House2.png\");\r\n        Pictures.add(\"MyCat.jpeg\");\r\n    }\r\n\r\n    @Test\r\n    public void getWorker() {\r\n        job.setWorker(workerID);\r\n        assertTrue(job.getWorker().equals(workerID));\r\n    }\r\n\r\n    @Test\r\n    public void setWorker() {\r\n        job.setWorker(workerID);\r\n        assertTrue(job.getWorker().equals(workerID));\r\n    }\r\n\r\n    @Test\r\n    public void EmployeeSignedOff() {\r\n        job.setWorker(workerID);\r\n        job.EmployeeSigned();\r\n\r\n        assertTrue(job.getEmployeeSigned());\r\n    }\r\n\r\n    @Test\r\n    public void EmployerSignedOff() {\r\n        job.EmployerSigned();\r\n\r\n        assertTrue(job.getEmployerSigned());\r\n    }\r\n\r\n    @Test\r\n    public void BothPartySignedOff() {\r\n        job.setWorker(workerID);\r\n        job.EmployeeSigned();\r\n        job.EmployerSigned();\r\n\r\n        assertTrue(job.partyApproved());\r\n    }\r\n\r\n    @Test\r\n    public void getTitle() {\r\n        job.setTitle(Title);\r\n        assertTrue(Title.equals(job.getTitle()));\r\n    }\r\n\r\n    @Test\r\n    public void setTitle() {\r\n        job.setTitle(Title);\r\n        assertTrue(Title.equals(job.getTitle()));\r\n    }\r\n\r\n    @Test\r\n    public void getLocation() {\r\n        job.setLocation(Location);\r\n        assertTrue(Location.equals(job.getLocation()));\r\n    }\r\n\r\n    @Test\r\n    public void setLocation() {\r\n        job.setLocation(Location);\r\n        assertTrue(Location.equals(job.getLocation()));\r\n    }\r\n\r\n    @Test\r\n    public void getDuration() {\r\n        job.setDuration(Duration);\r\n        assertTrue(Duration == job.getDuration());\r\n    }\r\n\r\n    @Test\r\n    public void setDuration() {\r\n        job.setDuration(Duration);\r\n        assertTrue(Duration == job.getDuration());\r\n    }\r\n\r\n    @Test\r\n    public void getPayment() {\r\n        job.setPaymentAmount(PaymentAmount);\r\n        assertTrue(PaymentAmount == job.getPaymentAmount());\r\n    }\r\n\r\n    @Test\r\n    public void setPayment() {\r\n        job.setPaymentAmount(PaymentAmount);\r\n        assertTrue(PaymentAmount == job.getPaymentAmount());\r\n    }\r\n\r\n    @Test\r\n    public void getDeadline() throws ParseException {\r\n        job.setDeadline(Deadline);\r\n        assertTrue(Deadline.toString().equals(job.getDeadline().toString()));\r\n    }\r\n\r\n    @Test\r\n    public void setDeadline() throws ParseException {\r\n        job.setDeadline(Deadline);\r\n        assertTrue(Deadline.toString().equals(job.getDeadline().toString()));\r\n    }\r\n\r\n    @Test\r\n    public void getDescription() {\r\n        job.setDescription(Description);\r\n        assertTrue(Description.equals(job.getDescription()));\r\n    }\r\n\r\n    @Test\r\n    public void setDescription() {\r\n        job.setDescription(Description);\r\n        assertTrue(Description.equals(job.getDescription()));\r\n    }\r\n\r\n    @Test\r\n    public void getEquipmentList() {\r\n        job.setEquipment(Equipment);\r\n        assertTrue(Equipment.equals(job.getEquipment()));\r\n    }\r\n\r\n    @Test\r\n    public void setEquipmentList() {\r\n        job.setEquipment(Equipment);\r\n        assertTrue(Equipment.equals(job.getEquipment()));\r\n    }\r\n\r\n    @Test\r\n    public void addEquipment() {\r\n        job.setEquipment(Equipment);\r\n\r\n        job.addEquipment(newEquipment);\r\n        assertTrue(job.getEquipment().size() == 4);\r\n    }\r\n\r\n    @Test\r\n    public void getPictures() {\r\n        job.setPictures(Pictures);\r\n        assertTrue(Pictures.equals(job.getPictures()));\r\n    }\r\n\r\n    @Test\r\n    public void setPictures() {\r\n        job.setPictures(Pictures);\r\n        assertTrue(Pictures.equals(job.getPictures()));\r\n    }\r\n\r\n    @Test\r\n    public void addPicture() {\r\n        job.setPictures(Pictures);\r\n\r\n        job.addPicture(newPicture);\r\n        assertTrue(job.getPictures().size() == 4);\r\n    }\r\n\r\n    @Test\r\n    public void getCreateDate() throws ParseException {\r\n        assertTrue(job.getCreateDate() instanceof Date);\r\n    }\r\n\r\n    @Test\r\n    public void getAuthor() {\r\n        assertTrue(userID.equals(job.getAuthor()));\r\n    }\r\n\r\n    @Test\r\n    public void getInitialJobState() {\r\n        assertTrue(0 == job.getState());\r\n    }\r\n\r\n    @Test\r\n    public void getHiredJobState() {\r\n        job.setWorker(workerID);\r\n        assertTrue(1 == job.getState());\r\n    }\r\n\r\n    @Test\r\n    public void getWorkerSignedJobState() {\r\n        job.setWorker(workerID);\r\n        job.EmployeeSigned();\r\n\r\n        assertTrue(2 == job.getState());\r\n    }\r\n\r\n    @Test\r\n    public void getEmployerSignedJobState() {\r\n        job.EmployerSigned();\r\n\r\n        assertTrue(3 == job.getState());\r\n    }\r\n\r\n    @Test\r\n    public void getBothSignedJobState() {\r\n        job.setWorker(workerID);\r\n        job.EmployeeSigned();\r\n        job.EmployerSigned();\r\n\r\n        assertTrue(4 == job.getState());\r\n    }\r\n\r\n    @Test\r\n    public void SupportInterventionJobState() {\r\n        job.SupportRequested();\r\n\r\n        assertTrue(5 == job.getState());\r\n    }\r\n\r\n    @Test\r\n    public void CompleteJobState() {\r\n        job.EmployeeSigned();\r\n        job.EmployerSigned();\r\n\r\n        job.MarkCompleted();\r\n\r\n        assertTrue(6 == job.getState());\r\n    }\r\n}\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/test/java/com/team5/quickcashteam5/JobTest.java	(revision d9ddfc65c2acb632abb5d80d718d8f22f8a4cbbf)
++++ app/src/test/java/com/team5/quickcashteam5/JobTest.java	(date 1606964741865)
+@@ -3,7 +3,6 @@
+ import org.junit.Before;
+ import org.junit.Test;
+ 
+-import java.text.ParseException;
+ import java.util.ArrayList;
+ import java.util.Date;
+ 
+@@ -125,13 +124,13 @@
+     }
+ 
+     @Test
+-    public void getDeadline() throws ParseException {
++    public void getDeadline() {
+         job.setDeadline(Deadline);
+         assertTrue(Deadline.toString().equals(job.getDeadline().toString()));
+     }
+ 
+     @Test
+-    public void setDeadline() throws ParseException {
++    public void setDeadline() {
+         job.setDeadline(Deadline);
+         assertTrue(Deadline.toString().equals(job.getDeadline().toString()));
+     }
+@@ -189,7 +188,7 @@
+     }
+ 
+     @Test
+-    public void getCreateDate() throws ParseException {
++    public void getCreateDate() {
+         assertTrue(job.getCreateDate() instanceof Date);
+     }
+ 
